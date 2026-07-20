@@ -1,20 +1,54 @@
+
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>One Special Evening</title>
-<link rel="stylesheet" href="style.css">
+<title>One Special Evening ❤️</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(#7ec8ff,#ffe0b2);display:flex;justify-content:center;align-items:center;min-height:100vh}
+.card{background:#fff;width:min(92%,520px);padding:30px;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,.18);text-align:center}
+button{padding:12px 20px;border:0;border-radius:10px;background:#ff5c8d;color:#fff;cursor:pointer;margin:8px}
+input,select,textarea{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid #ccc}
+#no{position:absolute}
+#play{position:relative;height:90px}
+</style>
 </head>
 <body>
-<div class="ocean"></div>
-<div class="card">
-  <div id="scene">
-    <h1>Hello, Kanmani ❤️</h1>
-    <p id="type"></p>
-    <button id="next">Continue</button>
-  </div>
-</div>
-<script src="script.js"></script>
+<div class="card"><div id="app"></div></div>
+<script>
+const app=document.getElementById('app');
+const scenes=[
+()=>app.innerHTML=`<h2>Hello, Kanmani ❤️</h2><p>Some moments deserve more than a text message.</p><p>So I made something just for you.</p><button onclick="next()">Open Invitation</button>`,
+()=>app.innerHTML=`<h2>🍾 Message in a Bottle</h2><p>Imagine a little bottle floating to the shore...</p><p>Tap below to open it.</p><button onclick="next()">Open Bottle</button>`,
+()=>app.innerHTML=`<h2>Dear Kanmani,</h2><p>Out of all the ordinary days, I wanted to make one evening unforgettable.</p><p>I hope this little surprise made you smile.</p><button onclick="next()">Continue</button>`,
+()=>app.innerHTML=`<h2>One Question...</h2><p>Would you let me take you out on a date? ❤️</p><div id='play'><button onclick='next()'>YES ❤️</button><button id='no'>No</button></div>`||bindNo(),
+()=>app.innerHTML=`<h2>Let's Plan It ❤️</h2>
+<input id='date' type='date'>
+<select id='time'><option>Breakfast</option><option>Coffee</option><option>Sunset</option><option>Dinner</option></select>
+<select id='food'><option>Italian</option><option>Pizza</option><option>South Indian</option><option>Cafe</option><option>Desserts</option></select>
+<textarea id='msg' placeholder="I'm looking forward to..."></textarea>
+<button onclick='submitData()'>Confirm ❤️</button>`
+];
+let s=0;
+function next(){s++; if(s<scenes.length){scenes[s](); if(s===3) bindNo();}}
+function bindNo(){
+const n=document.getElementById('no'); if(!n) return;
+let c=0; const txt=["Really?","Think again 😄","Almost!","Nope 😂"];
+function mv(){c++; if(c<5){n.textContent=txt[Math.min(c-1,3)];n.style.left=Math.random()*220+'px';n.style.top=Math.random()*45+'px';}else n.style.display='none';}
+n.onmouseenter=mv;n.ontouchstart=(e)=>{e.preventDefault();mv();}
+}
+async function submitData(){
+const payload={
+date:date.value,time:time.value,food:food.value,message:msg.value
+};
+// Replace YOUR_WEB_APP_URL with Apps Script Web App URL.
+try{
+await fetch("YOUR_WEB_APP_URL",{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+}catch(e){}
+app.innerHTML=`<h2>❤️ It's Official ❤️</h2><p>Thank you for saying yes.</p><p>I can't wait for our evening together.</p><p><b>- Akshay</b></p>`;
+}
+scenes[0]();
+</script>
 </body>
 </html>
