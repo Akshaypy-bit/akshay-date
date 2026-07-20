@@ -44,7 +44,7 @@ date:date.value,time:time.value,food:food.value,message:msg.value
 };
 // Replace YOUR_WEB_APP_URL with Apps Script Web App URL.
 try{
-await fetch("YOUR_WEB_APP_URL",{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+await fetch("https://script.google.com/macros/s/AKfycbzRvyt3-_Ww_D4P6kAnm_Cxm-KFFqpOlOMeKR8fj6eVKuG6AtkrxKFZqXxeUeVjDgx5/exec",{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
 }catch(e){}
 app.innerHTML=`<h2>❤️ It's Official ❤️</h2><p>Thank you for saying yes.</p><p>I can't wait for our evening together.</p><p><b>- Akshay</b></p>`;
 }
