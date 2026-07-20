@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Akshay ❤️ Kanmani</title>
-</head>
-<body>
-    <h1>Hello Kanmani ❤️</h1>
-    <p>Coming Soon...</p>
-</body>
-</html>
+<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>For Kanmani ❤️</title><style>*{box-sizing:border-box}body{margin:0;font-family:Arial;background:linear-gradient(135deg,#ffd6e0,#ffeef3);display:flex;justify-content:center;align-items:center;min-height:100vh}.card{width:min(92%,420px);background:#fff;padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.15);text-align:center;position:relative}button{border:none;padding:12px 22px;border-radius:12px;cursor:pointer;font-size:16px;margin:8px}.primary{background:#ff4f7d;color:#fff}.secondary{background:#ececec}input,select,textarea{width:100%;margin:10px 0;padding:11px;border-radius:10px;border:1px solid #ccc}textarea{resize:none}#play{position:relative;height:110px}#noBtn{position:absolute}</style></head><body><div class='card' id='app'><h2>Hello Kanmani ❤️</h2><p>I have a little surprise for you.</p><button class='primary' onclick='question()'>Continue</button></div><script>
+const app=document.getElementById('app');
+function question(){app.innerHTML=`<h2>Will you go on a date with Akshay? ❤️</h2><div id='play'><button class='primary' onclick='form()'>YES ❤️</button><button class='secondary' id='noBtn'>No</button></div>`;const no=document.getElementById('noBtn');let tries=0;function move(){tries++;const msgs=['Really? 🤔','Think again 😄','Catch me!','Not today 😂'];if(tries<5){no.innerText=msgs[Math.min(tries-1,msgs.length-1)];no.style.left=(Math.random()*210)+'px';no.style.top=(Math.random()*60)+'px';}else{no.style.display='none';}}no.onmouseenter=move;no.ontouchstart=(e)=>{e.preventDefault();move();}}
+function form(){app.innerHTML=`<h2>Plan Our Date ❤️</h2><input id='date' type='date'><input id='time' type='time'><select id='food'><option>Italian 🍝</option><option>Pizza 🍕</option><option>South Indian 🥘</option><option>Chinese 🥟</option><option>Cafe ☕</option><option>Desserts 🍰</option></select><textarea id='msg' rows='4' placeholder='What are you looking forward to?'></textarea><button class='primary' onclick='finish()'>Confirm ❤️</button>`;}
+function finish(){const d=date.value,t=time.value,f=food.value,m=msg.value;app.innerHTML=`<h1>❤️ Date Confirmed ❤️</h1><p>See you soon, Kanmani!</p><hr><p><b>Date:</b> ${d}</p><p><b>Time:</b> ${t}</p><p><b>Cuisine:</b> ${f}</p><p><b>Your Message:</b><br>${m||'-'}</p><p><b>- Akshay</b></p>`;}
+</script></body></html>
